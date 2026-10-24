@@ -59,6 +59,7 @@ export function SiteHeader({ shortName, trustName, tagline, phone }: SiteHeaderP
   }, [open]);
 
   return (
+    <>
     <header
       className={`sticky top-0 z-40 transition-colors duration-300 ${
         scrolled || open ? "border-b border-line bg-paper/90 backdrop-blur-md" : "border-b border-transparent bg-paper"
@@ -116,7 +117,10 @@ export function SiteHeader({ shortName, trustName, tagline, phone }: SiteHeaderP
           </button>
         </div>
       </div>
+    </header>
 
+      {/* Rendered outside <header>: the header's backdrop blur would otherwise
+          become the containing block for this fixed panel and collapse it. */}
       <div
         id="mobile-menu"
         ref={panelRef}
@@ -157,6 +161,6 @@ export function SiteHeader({ shortName, trustName, tagline, phone }: SiteHeaderP
           )}
         </nav>
       </div>
-    </header>
+    </>
   );
 }
